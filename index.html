@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>「チーム型ファネル」構築戦略セミナー｜田中祐一</title>
+<!--
+  セミナー募集ページ v1（スポット開催・ハウスリスト向け）
+  構成参考: おさる氏 申込ページ（カウントダウン→ヘッド→動画→[追加]話す予定ブレット→フォーム→注意書き→プロフィール→実績→再フォーム）
+  デザイン: tanakayuichi-site.vercel.app のトークン（ティール×白×黄マーカー・SaaSスタイル）
+  ★UTAGE設置時の差し替え: (1) CONFIGのカウントダウン日時 (2) 動画埋め込み (3) フォーム2箇所をUTAGEフォームブロックへ (4) 実績グリッド画像（掲載許諾＋人物同定ゲート通過後）
+-->
+<style>
+  :root{
+    --teal:#2CB596; --teal-deep:#189B7D; --teal-tint:#F0FAF8;
+    --ink:#17352E; --muted:#5D726A; --btn:#14806A;
+    --marker:linear-gradient(transparent 58%, #FFE97F 58%, #FFE97F 92%, transparent 92%);
+    --pill-dark:#1E2B27; --line:#DDEEE8;
+    --shadow:0 10px 30px rgba(23,53,46,.08);
+    --gothic:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+    --latin:"Avenir Next","Futura","Verdana",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:var(--gothic);color:var(--ink);background:#fff;line-height:1.8;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px;}
+  .narrow{max-width:640px;margin:0 auto;}
+
+  /* ---------- eyebrow ---------- */
+  .eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;
+    font-family:var(--latin);font-size:12px;letter-spacing:.28em;color:var(--teal-deep);font-weight:600;text-transform:uppercase;}
+  .eyebrow::before,.eyebrow::after{content:"";width:34px;height:2px;background:var(--teal);}
+
+  /* ---------- countdown ---------- */
+  .countdown{background:#fff;padding:22px 0 6px;text-align:center;}
+  .cd-units{display:flex;justify-content:center;gap:10px;}
+  .cd-unit{text-align:center;}
+  .cd-num{min-width:58px;padding:10px 8px;background:var(--pill-dark);color:#fff;border-radius:10px;
+    font-family:var(--latin);font-size:26px;font-weight:700;line-height:1;box-shadow:var(--shadow);}
+  .cd-label{font-size:11px;color:var(--muted);margin-top:6px;letter-spacing:.1em;}
+  .cd-caption{font-size:12px;color:var(--muted);margin-top:10px;}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;overflow:hidden;padding:48px 0 40px;text-align:center;
+    background:linear-gradient(180deg,#EAF6F2 0%, #fff 78%);}
+  .hero .watermark{position:absolute;top:8px;left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--latin);font-weight:800;font-size:120px;letter-spacing:.04em;color:transparent;
+    -webkit-text-stroke:1.5px rgba(44,181,150,.13);pointer-events:none;user-select:none;}
+  .hero-sub{margin-top:22px;font-size:17px;font-weight:700;color:var(--teal-deep);letter-spacing:.04em;}
+  .hero h1{margin-top:10px;font-size:44px;font-weight:800;line-height:1.35;letter-spacing:.02em;}
+  .hero h1 .mk{background:var(--marker);padding:0 4px;}
+  .hero-badges{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  .badge{border:1.5px solid var(--teal);color:var(--teal-deep);border-radius:999px;
+    padding:5px 18px;font-size:13px;font-weight:700;background:#fff;}
+  .hero-note{margin-top:14px;font-size:13px;color:var(--muted);}
+
+  /* ---------- video ---------- */
+  .video-sec{padding:34px 0 8px;}
+  .video-tag{display:inline-block;background:var(--pill-dark);color:#fff;font-size:12px;font-weight:700;
+    letter-spacing:.08em;padding:6px 16px;border-radius:6px 6px 0 0;}
+  .video-frame{position:relative;width:100%;aspect-ratio:16/9;background:#0d1715;border-radius:0 14px 14px 14px;
+    overflow:hidden;box-shadow:var(--shadow);}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .video-caption{text-align:center;font-size:13px;color:var(--muted);margin-top:12px;}
+
+  /* ---------- agenda (セミナーで話す予定) ---------- */
+  .agenda{padding:56px 0 20px;}
+  .sec-title{text-align:center;font-size:30px;font-weight:800;margin-top:12px;letter-spacing:.03em;}
+  .sec-title .mk{background:var(--marker);padding:0 4px;}
+  .agenda-lead{text-align:center;font-size:14px;color:var(--muted);margin-top:10px;}
+  .agenda-list{margin-top:28px;display:flex;flex-direction:column;gap:12px;}
+  .agenda-item{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);
+    border-radius:14px;padding:18px 22px;box-shadow:var(--shadow);}
+  .agenda-item .chk{flex:0 0 26px;width:26px;height:26px;margin-top:4px;border-radius:50%;background:var(--teal);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+  .agenda-item p{font-size:15.5px;font-weight:600;line-height:1.7;}
+  .agenda-item p small{display:block;font-weight:500;color:var(--muted);font-size:13px;margin-top:2px;}
+  .agenda-item.tokuten{background:var(--teal-tint);border-color:var(--teal);}
+  .agenda-foot{text-align:center;font-size:13px;color:var(--muted);margin-top:16px;}
+
+  /* ---------- schedule + form ---------- */
+  .apply{background:var(--teal-tint);padding:56px 0 60px;margin-top:44px;}
+  .apply.second{margin-top:0;}
+  .date-cards{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:26px 0 30px;}
+  .date-card{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:16px 22px;text-align:center;min-width:200px;box-shadow:var(--shadow);}
+  .date-card .d{font-size:19px;font-weight:800;}
+  .date-card .t{font-size:14px;color:var(--muted);margin-top:2px;}
+  .form-card{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:34px 30px;max-width:560px;margin:0 auto;}
+  .form-row{margin-bottom:18px;}
+  .form-row label{display:block;font-size:14px;font-weight:700;margin-bottom:6px;}
+  .req{display:inline-block;background:#D64545;color:#fff;font-size:10.5px;font-weight:700;border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px;}
+  .form-row input,.form-row select{width:100%;padding:13px 14px;font-size:15px;border:1.5px solid var(--line);border-radius:10px;background:#FBFDFC;font-family:var(--gothic);color:var(--ink);}
+  .form-row input:focus,.form-row select:focus{outline:2px solid var(--teal);border-color:var(--teal);}
+  .cta{display:block;width:100%;padding:18px 10px;margin-top:6px;background:var(--btn);color:#fff;font-size:19px;font-weight:800;
+    letter-spacing:.06em;border:0;border-radius:999px;cursor:pointer;box-shadow:0 12px 26px rgba(20,128,106,.32);
+    transition:transform .15s ease, box-shadow .15s ease;font-family:var(--gothic);}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(20,128,106,.4);}
+  .form-note{text-align:center;font-size:13px;font-weight:700;margin-top:14px;}
+  .fine{max-width:560px;margin:22px auto 0;font-size:12px;color:var(--muted);line-height:1.9;}
+
+  /* ---------- profile ---------- */
+  .profile{padding:64px 0 30px;}
+  .prof-photo{width:150px;height:150px;border-radius:50%;background:var(--teal-tint);border:4px solid #fff;
+    box-shadow:var(--shadow);margin:26px auto 0;display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:12px;text-align:center;overflow:hidden;}
+  .prof-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+  .prof-name{text-align:center;margin-top:16px;font-size:22px;font-weight:800;}
+  .prof-name small{display:block;font-family:var(--latin);font-size:11px;letter-spacing:.24em;color:var(--muted);font-weight:600;margin-top:4px;}
+  .prof-list{max-width:560px;margin:26px auto 0;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:26px 30px;box-shadow:var(--shadow);}
+  .prof-list li{list-style:none;display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-size:15px;font-weight:600;}
+  .prof-list li::before{content:"✓";flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--teal-tint);
+    color:var(--teal-deep);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;margin-top:4px;}
+  .prof-list li b{color:var(--teal-deep);}
+
+  /* ---------- results ---------- */
+  .results{padding:50px 0 26px;}
+  .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px;}
+  .result-grid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;box-shadow:var(--shadow);display:block;}
+  .results-note{text-align:center;font-size:12px;color:var(--muted);margin-top:14px;}
+
+  footer{background:var(--pill-dark);color:rgba(255,255,255,.75);text-align:center;font-size:12px;padding:22px 10px;margin-top:56px;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:29px;}
+    .hero .watermark{font-size:64px;}
+    .hero-sub{font-size:14.5px;}
+    .sec-title{font-size:23px;}
+    .agenda-item p{font-size:14.5px;}
+    .result-grid{grid-template-columns:repeat(2,1fr);}
+    .cd-num{min-width:50px;font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ①カウントダウン（CONFIG: data-deadline を締切日時に。未設定なら自動非表示） -->
+<div class="countdown" id="countdown" data-deadline="2026-07-24T23:59:59+09:00">
+  <div class="cd-units">
+    <div class="cd-unit"><div class="cd-num" id="cd-d">–</div><div class="cd-label">日</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-h">–</div><div class="cd-label">時間</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">–</div><div class="cd-label">分</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">–</div><div class="cd-label">秒</div></div>
+  </div>
+  <p class="cd-caption">申込受付の締切まで</p>
+</div>
+
+<!-- ②ヒーロー -->
+<header class="hero">
+  <div class="watermark">TEAM FUNNEL</div>
+  <div class="wrap">
+    <div class="eyebrow">Team Funnel Strategy Seminar</div>
+    <p class="hero-sub">SNSに頼らず、オンライン講座が毎月売れ続ける</p>
+    <h1>「<span class="mk">チーム型ファネル</span>」<br>構築戦略セミナー</h1>
+    <div class="hero-badges">
+      <span class="badge">参加無料</span>
+      <span class="badge">オンライン開催（Zoom）</span>
+      <span class="badge">2時間30分・ライブ</span>
+    </div>
+    <p class="hero-note">すでに講座・商品を販売した経験のある方向けのセミナーです</p>
+  </div>
+</header>
+
+<!-- ③動画 -->
+<section class="video-sec">
+  <div class="wrap narrow">
+    <span class="video-tag">メルマガ・LINE登録者限定のご案内</span>
+    <div class="video-frame">
+      <!-- ★差し替え: 挨拶動画の本番埋め込み（現プレースホルダ=v2仮編集） -->
+      <iframe src="https://www.youtube.com/embed/a3QfkK732-E" title="セミナーのご案内" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">▲ まずはこちらの動画をご覧ください</p>
+  </div>
+</section>
+
+<!-- ④セミナーで話す予定（おさる構成への追加ブロック・田中指定） -->
+<section class="agenda">
+  <div class="wrap narrow">
+    <div class="eyebrow">Agenda</div>
+    <h2 class="sec-title">セミナーで<span class="mk">話す予定</span></h2>
+    <p class="agenda-lead">2時間30分で、ここまで持ち帰っていただきます。</p>
+    <div class="agenda-list">
+      <div class="agenda-item"><span class="chk">1</span>
+        <p>なぜAI時代に、8割の人は売上が下がるのか
+        <small>情報の希薄化と市場の二極化——売上が下がってきた本当の原因。あなたのせいではありません</small></p>
+      </div>
+      <div class="agenda-item"><span class="chk">2</span>
+        <p>【ライブ実演】田中が育てた「AI社員13人」を、その場でお見せします
+        <small>台本・LP・メールが目の前で組み上がっていく生実演。あなたがAIを覚える必要はありません</small></p>
+      </div>
+      <div class="agenda-item"><span class="chk">3</span>
+        <p>売上目標から逆算して事業を組む「数値の考え方」と設計図を、その場で公開
+        <small>来月の売上が「祈り」ではなく「計算」になる逆算設計。あなたの数字で一緒にやります</small></p>
+      </div>
+      <div class="agenda-item"><span class="chk">4</span>
+        <p>広告費ほぼゼロで3,900万円を受注した「行列ができてから、カートを開ける」設計
+        <small>講座ビジネス以外でも機能した、業種を選ばない実例で解説</small></p>
+      </div>
+      <div class="agenda-item"><span class="chk">5</span>
+        <p>感謝されるのに、売れない——セミナーやチャレンジが機能しなくなった理由
+        <small>体験価値には2種類あります。財布が開く「見えた」の瞬間の設計</small></p>
+      </div>
+      <div class="agenda-item"><span class="chk">6</span>
+        <p>週2日稼働で年商1億円を回す「チーム型ファネル構築戦略」6ステップの全体設計図
+        <small>SNSに頼らず「お金を払っても学びたい人」だけを狙い撃つ、仕組み化集客まで全公開</small></p>
+      </div>
+      <div class="agenda-item tokuten"><span class="chk">🎁</span>
+        <p>【リアルタイム参加特典】チーム型ファネル・スターターキット（全5点）
+        <small>全50ステップの工程表／商品構築テンプレート＋実例解説動画／現役プロデューサー座談会／チームビルディング事例集／契約書のひな形</small></p>
+      </div>
+    </div>
+    <p class="agenda-foot">※セミナー内での売り込みは一切ありません。その場で買える商品もありません。</p>
+  </div>
+</section>
+
+<!-- ⑤日程＋申込フォーム -->
+<section class="apply" id="apply">
+  <div class="wrap">
+    <div class="eyebrow">Schedule</div>
+    <h2 class="sec-title">開催日程</h2>
+    <div class="date-cards">
+      <!-- ★差し替え: 確定日程 -->
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">20:00〜22:30</div></div>
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">13:00〜15:30</div></div>
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">20:00〜22:30</div></div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════════
+         ▼▼▼ UTAGEフォーム差し込み箇所①（ここから） ▼▼▼
+         下の <div class="form-card"> の中身（form-row 3つ＋ボタン＋注意書き）を
+         丸ごと削除して、UTAGEのフォーム要素（メール／携帯番号／参加希望日）を
+         この位置に貼り付けてください。
+         白カード・影・角丸は外側の .form-card が付けるので、UTAGE側は素のフォームでOKです。
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="form-card">
+      <div class="form-row">
+        <label>メールアドレス<span class="req">必須</span></label>
+        <input type="email" placeholder="例）example@gmail.com">
+      </div>
+      <div class="form-row">
+        <label>携帯番号<span class="req">必須</span></label>
+        <input type="tel" placeholder="携帯番号を入力">
+      </div>
+      <div class="form-row">
+        <label>参加希望日<span class="req">必須</span></label>
+        <select><option>選択してください</option><option>7月◯日（◯）20:00〜</option><option>7月◯日（◯）13:00〜</option><option>7月◯日（◯）20:00〜</option></select>
+      </div>
+      <button class="cta" type="button">セミナーに申し込む（無料）</button>
+      <p class="form-note">※メールアドレス・電話番号ともに正しい情報をご記入ください。</p>
+    </div>
+    <!-- ▲▲▲ UTAGEフォーム差し込み箇所①（ここまで） ▲▲▲ -->
+    <div class="fine">
+      【確認事項】※yahoo, hotmail, icloud などのフリーメールアドレス、携帯キャリアメール（docomo, au, softbank など）では受信できない場合がありますので、プロバイダのアドレスでのご登録をおすすめいたします。<br>
+      迷惑フォルダに案内メールが届く場合もありますので、受信BOXにメールが無い場合は迷惑フォルダもご確認ください。<br>
+      ※プライバシーポリシーについて、お客様の個人情報を第三者に開示することはございません。<br>
+      ※ご登録いただいたメールアドレスには田中祐一より定期的に情報を配信させていただきます。ご不要な場合は1クリックで配信解除できます。
+    </div>
+  </div>
+</section>
+
+<!-- ⑥講師プロフィール -->
+<section class="profile">
+  <div class="wrap">
+    <div class="eyebrow">Profile</div>
+    <h2 class="sec-title">講師プロフィール</h2>
+    <div class="prof-photo"><img src="assets/portrait.jpg" alt="田中祐一"></div>
+    <div class="prof-name">田中祐一<small>YUICHI TANAKA</small></div>
+    <ul class="prof-list">
+      <li>株式会社ザ・リード代表／<b>『プロダクトローンチの教科書』</b>著者</li>
+      <li>プロモーション関与 <b>630回超</b>・オンラインビジネス歴13年</li>
+      <li><b>週2日稼働</b>で年商1億円のオンラインスクールを運営</li>
+      <li>受講生 現在<b>200人</b>／売上報告は<b>70業種で累計123億円超</b></li>
+      <li>毎月<b>20件の個別相談</b>が安定して入る仕組みを、自ら運用中</li>
+      <li>顔出しのお客様の声 <b>100名以上</b>をYouTubeで公開</li>
+      <li>子育てのため<b>ドバイ在住</b>・子ども優先の働き方を実践</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ⑦受講生実績 -->
+<section class="results">
+  <div class="wrap">
+    <div class="eyebrow">Results</div>
+    <h2 class="sec-title">受講生の実績</h2>
+    <div class="result-grid">
+      <!-- コンテンツホルダー事例10名・パンチ×ジャンル分散（公開YouTubeサムネ。※LP転載の包括許諾は公開前に確認 / UTAGE移植時は画像をUTAGEへアップして絶対URLに差し替え）
+           柴川さん除外・森谷さん除外（プロデューサー）: 2026-07-16 田中裁定 -->
+      <img src="assets/thumb01.jpg" alt="4回のローンチで2億4000万円（セールス講座）">
+      <img src="assets/thumb02.jpg" alt="マーケティング改善で7000万円→年商1億超（コーチング）">
+      <img src="assets/thumb03.jpg" alt="お片付けで累計5000万円→1億超">
+      <img src="assets/thumb04.jpg" alt="年商2000万円の頭打ちから5000万円へ（サロン集客）">
+      <img src="assets/thumb05.jpg" alt="アーユルヴェーダで累計5000万円">
+      <img src="assets/thumb11.jpg" alt="プロダクトローンチでリフォーム工事を3900万円受注">
+      <img src="assets/thumb06.jpg" alt="サロン経営からコンサル転身で3750万円">
+      <img src="assets/thumb07.jpg" alt="ハンドメイドで月商100万円から10倍へ">
+      <img src="assets/thumb08.jpg" alt="広告費30万円で1600万円（鍼灸）">
+      <img src="assets/thumb09.jpg" alt="育脳コンテンツで882万円">
+      <img src="assets/thumb10.jpg" alt="SNSなしから英語で600万円">
+    </div>
+    <p class="results-note">※受講生からの売上報告：70業種・累計123億円超（2026年時点）</p>
+  </div>
+</section>
+
+<!-- ⑧再フォーム -->
+<section class="apply second">
+  <div class="wrap">
+    <div class="eyebrow">Entry</div>
+    <h2 class="sec-title">セミナーに<span class="mk">申し込む</span></h2>
+    <div class="date-cards">
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">20:00〜22:30</div></div>
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">13:00〜15:30</div></div>
+      <div class="date-card"><div class="d">7月◯日（◯）</div><div class="t">20:00〜22:30</div></div>
+    </div>
+    <!-- ═══════════════════════════════════════════════════════════
+         ▼▼▼ UTAGEフォーム差し込み箇所②（ここから）※①と同じフォームを貼る ▼▼▼
+         ═══════════════════════════════════════════════════════════ -->
+    <div class="form-card">
+      <div class="form-row">
+        <label>メールアドレス<span class="req">必須</span></label>
+        <input type="email" placeholder="例）example@gmail.com">
+      </div>
+      <div class="form-row">
+        <label>携帯番号<span class="req">必須</span></label>
+        <input type="tel" placeholder="携帯番号を入力">
+      </div>
+      <div class="form-row">
+        <label>参加希望日<span class="req">必須</span></label>
+        <select><option>選択してください</option><option>7月◯日（◯）20:00〜</option><option>7月◯日（◯）13:00〜</option><option>7月◯日（◯）20:00〜</option></select>
+      </div>
+      <button class="cta" type="button">セミナーに申し込む（無料）</button>
+      <p class="form-note">※メールアドレス・電話番号ともに正しい情報をご記入ください。</p>
+    </div>
+    <!-- ▲▲▲ UTAGEフォーム差し込み箇所②（ここまで） ▲▲▲ -->
+  </div>
+</section>
+
+<footer>Copyright(c) 2026 株式会社ザ・リード All Rights Reserved.</footer>
+
+<script>
+(function(){
+  var el = document.getElementById('countdown');
+  var deadline = new Date(el.getAttribute('data-deadline')).getTime();
+  if (isNaN(deadline)) { el.style.display = 'none'; return; }
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function tick(){
+    var diff = deadline - Date.now();
+    if (diff <= 0) { el.style.display = 'none'; return; }
+    document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+    document.getElementById('cd-h').textContent = pad(Math.floor(diff % 86400000 / 3600000));
+    document.getElementById('cd-m').textContent = pad(Math.floor(diff % 3600000 / 60000));
+    document.getElementById('cd-s').textContent = pad(Math.floor(diff % 60000 / 1000));
+    setTimeout(tick, 1000);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
