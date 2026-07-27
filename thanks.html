@@ -12,7 +12,7 @@
   v2改訂(2026-07-26 田中指示): 上部の余白を圧縮しFVにボタンを収める／文字を拡大／LINEボタン特大化＋プルプル動作
   v3改訂(2026-07-26 田中指示): 「LINEでお送りします」→実態に合わせ「確実に届けるため友だち追加」へ（Zoomリンクはメールでも送るため）／
                               ①②の黒帯をボタン誤認するため線区切りのナチュラル見出しへ変更
-  ★スタッフ設定: (1) {{LINE_FRIEND_URL}} をLINE友だち追加URLへ (2) QRコード画像を差し込み
+  ★スタッフ設定: QRコード画像の差し込みのみ（LINE友だち追加リンクは実URL設定済み）
 -->
 <style>
   :root{
@@ -138,8 +138,8 @@
     <div class="route">
       <div class="route-head"><span class="route-num">1</span>スマートフォンでご覧の方</div>
       <p class="route-note">下のボタンを押して、そのまま友だち追加してください。</p>
-      <!-- ★スタッフ設定: href をLINE友だち追加URLに差し替え -->
-      <a class="line-btn" href="{{LINE_FRIEND_URL}}">
+      <!-- LINE友だち追加リンク（UTAGEシナリオ OfOS2Ck1dpBv・動作確認済み）。別シナリオに変える場合は末尾のIDを差し替え -->
+      <a class="line-btn" href="https://utage-system.com/line/link/dK5KTCVU86y7/OfOS2Ck1dpBv">
         <span class="line-icon">LINE</span>友だち追加はこちら
       </a>
       <p class="btn-sub">タップ1回で完了します（無料）</p>
